@@ -39,3 +39,9 @@
 * 2. Copy from this array as many elements as needed into the seven target directories
 *     (to make this efficiently, consider to use the function memcpy() of string.h).
 */
+
+int 	the_array [HUGE];
+
+int 	main (int argc, char *argv[]){
+
+}

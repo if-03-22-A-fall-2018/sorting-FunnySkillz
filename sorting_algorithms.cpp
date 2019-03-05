@@ -24,17 +24,19 @@ void 	init_random (int *array, unsigned long length){
 
 void swap(int *xp, int *yp)
 {
-    int temp = *xp;
-    *xp = *yp;
-    *yp = temp;
+  int temp = *xp;
+  *xp = *yp;
+  *yp = temp;
 }
 
 void 	bubble_sort (int *array, unsigned long length){
-  int i, j;
-  for (i = 0; i < length-1; i++)
-      for (j = 0; j < length-i-1; j++)
-          if (array[j] > array[j+1])
-             swap(&array[j], &array[j+1]);
+  for (int i = 0; i < length-1; i++){
+    for (int j = 0; j < length-i-1; j++){
+      if (array[j] > array[j+1]){
+        swap(&array[j], &array[j+1]);
+      }
+    }
+  }
 }
 
 void 	insertion_sort (int *array, unsigned long length){
@@ -43,7 +45,6 @@ void 	insertion_sort (int *array, unsigned long length){
    {
        key = array[i];
        j = i-1;
-
        while (j >= 0 && array[j] > key)
        {
            array[j+1] = array[j];
