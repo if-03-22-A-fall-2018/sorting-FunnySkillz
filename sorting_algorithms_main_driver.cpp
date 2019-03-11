@@ -71,6 +71,8 @@ int main(int argc, char const *argv[])
     int randomNumArray[HUGE];
     init_random(randomNumArray, HUGE);
 
+    float tinyTime, very_smallTime, smallTime, middleTime, largeTime, very_largeTime, hugeTime;
+
     printf("Algorithm\tTiny\t\tV_Small\t\tSmall\t\tMiddle\t\tLarge\t\tV_Large\t\tHuge\n");
 
     int changeSort = 0;
@@ -89,8 +91,15 @@ int main(int argc, char const *argv[])
       } else {
         printf("InsertionSort\t");
       }
-
-      printf("%f\t%f\t%f\t%f\t%f\t%f\t%f\n",getTime(tiny, TINY, changeSort),getTime(very_small, VERY_SMALL, changeSort),getTime(small, SMALL, changeSort),getTime(middle, MIDDLE, changeSort),getTime(large, LARGE, changeSort),getTime(very_large, VERY_LARGE, changeSort),getTime(huge, HUGE, changeSort));
+      tinyTime = getTime(tiny, TINY, changeSort);
+      very_smallTime = getTime(very_small, VERY_SMALL, changeSort);
+      smallTime = getTime(small, SMALL, changeSort);
+      middleTime = getTime(middle, MIDDLE, changeSort);
+      largeTime = getTime(large, LARGE, changeSort);
+      very_largeTime = getTime(very_large, VERY_LARGE, changeSort);
+      hugeTime = getTime(huge, HUGE, changeSort);
+;
+      printf("%f\t%f\t%f\t%f\t%f\t%f\t%f\n",tinyTime, very_smallTime, smallTime, middleTime, largeTime, very_largeTime, hugeTime);
       changeSort = 1;
   }
 }
