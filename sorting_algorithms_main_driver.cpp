@@ -40,8 +40,56 @@
 *     (to make this efficiently, consider to use the function memcpy() of string.h).
 */
 
-int 	the_array [HUGE];
+float getTime(int* array, unsigned long length, int number)
+{
+  init_random(array, length);
 
-int 	main (int argc, char *argv[]){
+  if(number == 0)
+  {
+    start_stopwatch();
+    bubble_sort(array, length);
+  }
+  else
+  {
+    start_stopwatch();
+    insertion_sort(array, length);
+  }
 
+  return elapsed_time();
+}
+
+int main(int argc, char const *argv[])
+{
+    int huge[HUGE];
+    int very_large[VERY_LARGE];
+    int large[LARGE];
+    int middle[MIDDLE];
+    int small[SMALL];
+    int very_small[VERY_SMALL];
+    int tiny[TINY];
+
+    int array[HUGE];
+    init_random(array, HUGE);
+
+    float bubbleT, bubbleVS, bubbleS, bubbleM, bubbleL, bubbleVL, bubbleH;
+    bubbleT = getTime(array, TINY, 0);
+    bubbleVS = getTime(array, VERY_SMALL, 0);
+    bubbleS = getTime(array, SMALL, 0);
+    bubbleM = getTime(array, MIDDLE, 0);
+    bubbleL = getTime(array, LARGE, 0);
+    bubbleVL = getTime(array, VERY_LARGE, 0);
+    bubbleH = getTime(array, HUGE, 0);
+
+    float insertT, insertVS, insertS, insertM, insertL, insertVL, insertH;
+    insertT = getTime(array, TINY, 1);
+    insertVS = getTime(array, VERY_SMALL, 1);
+    insertS = getTime(array, SMALL, 1);
+    insertM = getTime(array, MIDDLE, 1);
+    insertL = getTime(array, LARGE, 1);
+    insertVL = getTime(array, VERY_LARGE, 1);
+    insertH = getTime(array, HUGE, 1);
+
+    printf("Algorithm\tTiny\t\tV_Small\t\tSmall\t\tMiddle\t\tLarge\t\tV_Large\t\tHuge\n");
+    printf("Bubble\t\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", bubbleT, bubbleVS, bubbleS, bubbleM, bubbleL, bubbleVL, bubbleH);
+    printf("Insertion\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", insertT, insertVS, insertS, insertM, insertL, insertVL, insertH);
 }
