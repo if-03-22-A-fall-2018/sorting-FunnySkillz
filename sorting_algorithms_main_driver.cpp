@@ -68,28 +68,29 @@ int main(int argc, char const *argv[])
     int very_small[VERY_SMALL];
     int tiny[TINY];
 
-    int array[HUGE];
-    init_random(array, HUGE);
-
-    float bubbleT, bubbleVS, bubbleS, bubbleM, bubbleL, bubbleVL, bubbleH;
-    bubbleT = getTime(array, TINY, 0);
-    bubbleVS = getTime(array, VERY_SMALL, 0);
-    bubbleS = getTime(array, SMALL, 0);
-    bubbleM = getTime(array, MIDDLE, 0);
-    bubbleL = getTime(array, LARGE, 0);
-    bubbleVL = getTime(array, VERY_LARGE, 0);
-    bubbleH = getTime(array, HUGE, 0);
-
-    float insertT, insertVS, insertS, insertM, insertL, insertVL, insertH;
-    insertT = getTime(array, TINY, 1);
-    insertVS = getTime(array, VERY_SMALL, 1);
-    insertS = getTime(array, SMALL, 1);
-    insertM = getTime(array, MIDDLE, 1);
-    insertL = getTime(array, LARGE, 1);
-    insertVL = getTime(array, VERY_LARGE, 1);
-    insertH = getTime(array, HUGE, 1);
+    int randomNumArray[HUGE];
+    init_random(randomNumArray, HUGE);
 
     printf("Algorithm\tTiny\t\tV_Small\t\tSmall\t\tMiddle\t\tLarge\t\tV_Large\t\tHuge\n");
-    printf("Bubble\t\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", bubbleT, bubbleVS, bubbleS, bubbleM, bubbleL, bubbleVL, bubbleH);
-    printf("Insertion\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", insertT, insertVS, insertS, insertM, insertL, insertVL, insertH);
+
+    int changeSort = 0;
+
+    for (size_t i = 0; i < 2; i++) {
+      memcpy(huge, randomNumArray, sizeof(int) * HUGE);
+      memcpy(very_large, randomNumArray, sizeof(int) * VERY_LARGE);
+      memcpy(large, randomNumArray, sizeof(int) * LARGE);
+      memcpy(middle, randomNumArray, sizeof(int) * MIDDLE);
+      memcpy(small, randomNumArray, sizeof(int) * SMALL);
+      memcpy(very_small, randomNumArray, sizeof(int) * VERY_SMALL);
+      memcpy(tiny,randomNumArray, sizeof(int) * TINY);
+
+      if(changeSort == 0) {
+        printf("BubbleSort\t");
+      } else {
+        printf("InsertionSort\t");
+      }
+
+      printf("%f\t%f\t%f\t%f\t%f\t%f\t%f\n",getTime(tiny, TINY, changeSort),getTime(very_small, VERY_SMALL, changeSort),getTime(small, SMALL, changeSort),getTime(middle, MIDDLE, changeSort),getTime(large, LARGE, changeSort),getTime(very_large, VERY_LARGE, changeSort),getTime(huge, HUGE, changeSort));
+      changeSort = 1;
+  }
 }
